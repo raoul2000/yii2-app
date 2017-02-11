@@ -55,6 +55,28 @@
 	    <fileset refid="srcFiles" />
 	  </phplint>
 	</target>
+    <!--
+		Deploy
+	 -->
+    <target name="deploy">
+      <echo message="Copying fileset '${deploy.fileset.refid}' to ${ftp.host} in ${ftp.mode} mode" />
+      <ftpdeploy
+        host="${ftp.host}"
+        port="${ftp.port}"
+        username="${ftp.username}"
+        password="${ftp.password}"
+        dir="${ftp.dir}"
+        mode="${ftp.mode}">
+        <fileset refid="${deploy.fileset.refid}" />
+      </ftpdeploy>
+    </target>
+
+    <target name="deploy-src">
+      <echo msg="Deploying Source" />
+      <phingcall target="deploy">
+        <property name="deploy.fileset.refid" value="srcFiles" />
+      </phingcall>
+  </target>    
 	<!--
 		Create API documentation (phpdoc)
 	-->
