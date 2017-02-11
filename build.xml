@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="yii2-app" default="help" basedir=".">
+
+    <property name="package"  value="${phing.project.name}" override="true" />
+    <property name="builddir" value="./build/testsite"      override="true" />
+    <property name="srcdir"   value="${project.basedir}"    override="true" />
+
+    <!-- Fileset for all files -->
+    <fileset dir="${srcdir}" id="srcFiles">
+
+        <exclude name="**/.gitignore" />
+        <exclude name="**/.bowerrc"/>
+        <exclude name="build.xml"/>
+        <exclude name="LICENSE" />
+        <exclude name="LICENSE.md" />
+        <exclude name="README" />
+        <exclude name="README.md" />
+        <exclude name="yii" />
+        <exclude name="yii.bat" />
+        <exclude name="requirements.php" />
+        <exclude name="codeception.yml" />
+
+		<exclude name="**/*.bak" />
+		<exclude name="**/*.log" />
+		<exclude name="**/web/assets/**/*" />
+		<exclude name="**/web/index-test.php" />
+		<exclude name="**/runtime/**/*" />
+		<exclude name="vendor/**/*" />
+		<exclude name="**/*~" />
+
+        <include name="**" />
+        <include name="composer.json" />
+    </fileset>
+
+    <!-- ============================================  -->
+
+    <!-- ============================================  -->
+    <target name="build-src" description="main target">
+        <echo>building to ${builddir} ...</echo>
+        <delete dir="${builddir}" />
+        <copy todir="${builddir}">
+            <fileset refid="srcFiles" />
+        </copy>
+
+    </target>
+
+    <target name="composer">
+         <exec command="composer install  --no-dev" dir="${builddir}" passthru="true" />
+    </target>
+    <!--
+		Check for PHP syntax errors
+	 -->
+	<target name="phplint" description="find syntax errors in php files">
+	  <phplint haltonfailure="true">
+	    <fileset refid="srcFiles" />
+	  </phplint>
+	</target>
+	<!--
+		Create API documentation (phpdoc)
+	-->
+	<target name="help">
+		<echo>
+	${phing.project.name} build script
+	----------------------------------
+	You may use the following command format to build a target:
+
+		phing &lt;target name&gt;
+
+	where &lt;target name&gt; can be one of the	following:
+
+	${phing_targets}
+
+		</echo>
+	</target>
+</project>
