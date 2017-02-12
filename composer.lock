@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae27c503225fffb90532048a03de238a",
+    "content-hash": "635f336b28b11b9c21db087463129237",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -54,6 +54,74 @@
                 "responsive",
                 "web"
             ]
+        },
+        {
+            "name": "bower-asset/c3js-chart",
+            "version": "0.4.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/c3js/c3.git",
+                "reference": "223404a79246c61d150d8a209dbdc81f6955083b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/c3js/c3/zipball/223404a79246c61d150d8a209dbdc81f6955083b",
+                "reference": "223404a79246c61d150d8a209dbdc81f6955083b",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/d3": "~3.5.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "c3.css",
+                    "c3.js"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "htdocs",
+                    "spec",
+                    "src",
+                    "package.json",
+                    "component.json",
+                    "Gruntfile.*"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "D3-based reusable chart library",
+            "keywords": [
+                "chart",
+                "d3"
+            ]
+        },
+        {
+            "name": "bower-asset/d3",
+            "version": "v3.5.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mbostock-bower/d3-bower.git",
+                "reference": "7a826d211d5067867debf9ce24a9987e0cb02b6e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mbostock-bower/d3-bower/zipball/7a826d211d5067867debf9ce24a9987e0cb02b6e",
+                "reference": "7a826d211d5067867debf9ce24a9987e0cb02b6e",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "d3.js",
+                "bower-asset-ignore": []
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "A JavaScript visualization library for HTML and SVG."
         },
         {
             "name": "bower-asset/jquery",
