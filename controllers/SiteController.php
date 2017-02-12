@@ -63,6 +63,11 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionGraph()
+    {
+        return $this->render('graph');
+    }
+
     /**
      * Login action.
      *
