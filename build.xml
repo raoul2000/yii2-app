@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="yii2-app" default="help" basedir=".">
 
-    <property name="package"  value="${phing.project.name}" override="true" />
-    <property name="builddir" value="./build/testsite"      override="true" />
-    <property name="srcdir"   value="${project.basedir}"    override="true" />
+    <property name="package"     value="${phing.project.name}" override="true" />
+    <property name="buildSite"   value="./build/site"          override="true" />
+    <property name="buildVendor" value="./build/vendor"          override="true" />
+    <property name="srcdir"      value="${project.basedir}"    override="true" />
+
+    <fileset dir="${srcdir}" id="PHPFiles">
+      <exclude name="**/web/assets/**/*" />
+      <exclude name="vendor**" />
+      <exclude name="**/web/assets/**/*" />
+      <exclude name="**/runtime/**/*" />
+
+      <include name="**/*.php" />
+    </fileset>
 
     <!-- Fileset for all files -->
     <fileset dir="${srcdir}" id="srcFiles">
@@ -20,39 +30,48 @@
         <exclude name="requirements.php" />
         <exclude name="codeception.yml" />
 
-		<exclude name="**/*.bak" />
-		<exclude name="**/*.log" />
-		<exclude name="**/web/assets/**/*" />
-		<exclude name="**/web/index-test.php" />
-		<exclude name="**/runtime/**/*" />
-		<exclude name="vendor/**/*" />
-		<exclude name="**/*~" />
+    		<exclude name="**/*.bak" />
+    		<exclude name="**/*.log" />
+    		<exclude name="**/web/assets/**/*" />
+    		<exclude name="**/web/index-test.php" />
+    		<exclude name="**/runtime/**/*" />
+    		<exclude name="vendor/**/*" />
+    		<exclude name="vendor**" />
+    		<exclude name="build**" />
+    		<exclude name="**/*~" />
+        <exclude name="composer**" />
 
         <include name="**" />
-        <include name="composer.json" />
     </fileset>
 
     <!-- ============================================  -->
 
     <!-- ============================================  -->
     <target name="build-src" description="main target">
-        <echo>building to ${builddir} ...</echo>
-        <delete dir="${builddir}" />
-        <copy todir="${builddir}">
+        <echo>building to ${buildSite} ...</echo>
+        <delete dir="${buildSite}" />
+        <copy todir="${buildSite}">
             <fileset refid="srcFiles" />
         </copy>
 
     </target>
 
-    <target name="composer">
-         <exec command="composer install  --no-dev" dir="${builddir}" passthru="true" />
+    <!--
+      Install composer dependencies (no-dev) in build/vendor folder
+    -->
+    <target name="build-vendor" description="vendor dir no-dev">
+        <echo>building vendor to ${buildVendor} ...</echo>
+        <delete dir="${buildVendor}" />
+        <copy file="${project.basedir}/composer.json" todir="${buildVendor}" />
+        <exec command="composer install  --no-dev --prefer-dist" dir="${buildVendor}" passthru="true" />
     </target>
+
     <!--
 		Check for PHP syntax errors
 	 -->
 	<target name="phplint" description="find syntax errors in php files">
 	  <phplint haltonfailure="true">
-	    <fileset refid="srcFiles" />
+	    <fileset refid="PHPFiles" />
 	  </phplint>
 	</target>
     <!--
@@ -76,7 +95,7 @@
       <phingcall target="deploy">
         <property name="deploy.fileset.refid" value="srcFiles" />
       </phingcall>
-  </target>    
+  </target>
 	<!--
 		Create API documentation (phpdoc)
 	-->
