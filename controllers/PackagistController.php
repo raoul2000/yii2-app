@@ -22,10 +22,16 @@ class PackagistController extends \yii\rest\ActiveController
       ]);
     }
 
-    public function actionSearchByName($id)
+    public function actionSearchByPackageName($name)
     {
-      $model = app\models\Packagist::find($id);
-      return $model;
+      $modelClass = $this->modelClass;
+
+      return Yii::createObject([
+          'class' => ActiveDataProvider::className(),
+          'query' => $modelClass::find()
+            ->where(['package_name' => $name]),
+          'pagination' => false
+      ]);
     }
 
 }
