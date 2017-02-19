@@ -11,7 +11,7 @@ class PackagistController extends \yii\rest\ActiveController
 {
     public $modelClass = 'app\models\Packagist';
 
-    public function actionAll(){
+    public function actionFindAll(){
 
       $modelClass = $this->modelClass;
 
@@ -30,6 +30,19 @@ class PackagistController extends \yii\rest\ActiveController
           'class' => ActiveDataProvider::className(),
           'query' => $modelClass::find()
             ->where(['package_name' => $name]),
+          'pagination' => false
+      ]);
+    }
+
+    public function actionFindAllPackageName()
+    {
+      $modelClass = $this->modelClass;
+
+      return Yii::createObject([
+          'class' => ActiveDataProvider::className(),
+          'query' => $modelClass::find()
+            ->select('package_name')
+            ->groupBy('package_name'),
           'pagination' => false
       ]);
     }

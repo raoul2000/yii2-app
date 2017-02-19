@@ -1,5 +1,16 @@
 
-
+function loadPackageList() {
+  var packageSel = $('#package-selection');
+  $.getJSON('index.php?r=packagist/find-all-package-name')
+  .done(function(data){
+    data.map(function(item){
+      packageSel.append('<option value="'+ item.package_name +'"  >'+item.package_name+'</option>');
+    });
+  })
+  .fail(function(error){
+    console.log(error);
+  });
+}
 
 function createChart(selector,columns) {
   return c3.generate({
@@ -25,7 +36,7 @@ function formatDate(date) {
 
 
 function showChart(selector) {
-  $.getJSON('index.php?r=packagist/all')
+  $.getJSON('index.php?r=packagist/find-all')
   .done(function(data){
     console.log(data);
 
