@@ -1,4 +1,8 @@
 
+var chart = null;
+/**
+ * Load the list of available packages into the dropdown select list
+ */
 function loadPackageList() {
   var packageSel = $('#package-selection');
   $.getJSON('index.php?r=packagist/find-all-package-name')
@@ -6,19 +10,53 @@ function loadPackageList() {
     data.map(function(item){
       packageSel.append('<option value="'+ item.package_name +'"  >'+item.package_name+'</option>');
     });
+    $('#btn-select-package').removeAttr('disabled');
   })
   .fail(function(error){
     console.log(error);
   });
 }
 
+function loadPackageData(package_name) {
+  $.getJSON('index.php?r=packagist/search-by-package-name',{
+    "name" : package_name
+  })
+  .done(function(data){
+    console.log(data);
+    var serie = [package_name].concat(data.map(function(item){
+      return item.download;
+    }));
+    chart.load({
+        columns: [
+            serie
+        ]
+    });
+  })
+  .fail(function(error){
+    console.log(error);
+  });
+}
+
+
+$(function(){
+
+  $('#btn-select-package').on('click',function(ev){
+    var package_name = $('#package-selection option:selected').val();
+    if(package_name.length !== 0) {
+      loadPackageData(package_name);
+    }
+  });
+
+});
+
 function createChart(selector,columns) {
-  return c3.generate({
+  chart = c3.generate({
     bindto: selector,
     data: {
       columns: columns
     }
   });
+  return chart;
 }
 
 function formatDate(date) {

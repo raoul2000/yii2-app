@@ -7,7 +7,10 @@ $this->title = 'Raoul2000';
 
 $this->registerJsFile(
     '@web/js/chart.js',
-    ['depends' => [app\assets\C3Asset::className()]]
+    ['depends' => [
+      app\assets\C3Asset::className(),
+      app\assets\AppAsset::className()
+    ]]
 );
 
 $jsScript =<<<EOS
@@ -27,19 +30,19 @@ $this->registerJs(
       <h1>Graph <small>packagist stats</small></h1>
       <hr/>
     </div>
-    <div class="col-lg-6">
 
-    </div>
-
-    <div class="col-lg-6">
-      <form class="form-inline">
+    <div class="col-lg-12">
+      <div class="input-group">
         <select id="package-selection" class="form-control" name="package_name">
-          <option value="raoul2000/yii2-workflow-wizard">raoul2000/yii2-workflow-wizard</option>
-          <option value="raoul2000/yii2-backstrech-widget">raoul2000/yii2-backstrech-widget</option>
+          <option value="">Select pagkage ...</option>
         </select>
-        <button id="btn-select-package" type="button" class="btn btn-default">Add to Graph</button>
-      </form>
-    </div>
+        <span class="input-group-btn">
+          <button id="btn-select-package" type="button" class="btn btn-default" disabled="disabled">Load data</button>
+        </span>
+      </div><!-- /input-group -->
+      <hr />
+    </div><!-- /.col-lg-6 -->
+
   </div>
 
   <div class="row">
