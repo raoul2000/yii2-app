@@ -3,7 +3,7 @@
 use app\assets\C3Asset;
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Raoul2000';
 
 $this->registerJsFile(
     '@web/js/chart.js',
@@ -23,8 +23,9 @@ $this->registerJs(
 <div class="site-chart">
   <div class="row">
     <div class="col-lg-12">
+      <h1>Graph <small>packagist stats</small></h1>
+      <hr/>
       <div id="chart"></div>
-
     </div>
   </div>
 </div>
