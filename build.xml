@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="yii2-app" default="help" basedir=".">
+    <property file="./ftp.master.properties" />
 
     <property name="package"     value="${phing.project.name}" override="true" />
     <property name="buildSite"   value="./build/site"          override="true" />
     <property name="buildVendor" value="./build/vendor"          override="true" />
     <property name="srcdir"      value="${project.basedir}"    override="true" />
+
 
     <fileset dir="${srcdir}" id="PHPFiles">
       <exclude name="**/web/assets/**/*" />
@@ -29,12 +31,14 @@
         <exclude name="yii.bat" />
         <exclude name="requirements.php" />
         <exclude name="codeception.yml" />
+        <exclude name="*.properties" />
 
     		<exclude name="**/*.bak" />
     		<exclude name="**/*.log" />
     		<exclude name="**/web/assets/**/*" />
     		<exclude name="**/web/index-test.php" />
     		<exclude name="**/runtime/**/*" />
+        <exclude name="tests/**" />
     		<exclude name="vendor/**/*" />
     		<exclude name="vendor**" />
     		<exclude name="build**" />
@@ -44,9 +48,17 @@
         <include name="**" />
     </fileset>
 
-    <!-- ============================================  -->
+    <fileset dir="${buildSite}" id="srcBuild">
+      <include name="**" />
+    </fileset>
 
-    <!-- ============================================  -->
+    <fileset dir="${buildVendor}" id="vendorBuild">
+      <include name="**" />
+    </fileset>
+
+    <!-- /////////////////////////////////////////////////////////////////////
+  		Create API documentation (phpdoc)
+  	-->
     <target name="build-src" description="main target">
         <echo>building to ${buildSite} ...</echo>
         <delete dir="${buildSite}" />
@@ -78,26 +90,49 @@
 		Deploy
 	 -->
     <target name="deploy">
-      <echo message="Copying fileset '${deploy.fileset.refid}' to ${ftp.host} in ${ftp.mode} mode" />
+      <echo message="Copying '${deploy.fileset.refid}' to ${ftp.host} in ${ftp.mode} mode" />
       <ftpdeploy
         host="${ftp.host}"
         port="${ftp.port}"
         username="${ftp.username}"
         password="${ftp.password}"
         dir="${ftp.dir}"
+        passive="true"
         mode="${ftp.mode}">
+
         <fileset refid="${deploy.fileset.refid}" />
+
       </ftpdeploy>
     </target>
-
+    <!--
+  		Deploy built Source
+  	-->
     <target name="deploy-src">
       <echo msg="Deploying Source" />
       <phingcall target="deploy">
-        <property name="deploy.fileset.refid" value="srcFiles" />
+        <property name="deploy.fileset.refid" value="srcBuild" />
       </phingcall>
-  </target>
+    </target>
+    <!--
+      Deploy build vendor
+  	-->
+    <target name="deploy-vendor">
+      <echo msg="Deploying Vendor" />
+      <phingcall target="deploy">
+        <property name="deploy.fileset.refid" value="vendorBuild" />
+        <!-- override a property -->
+        <!-- <property name="ftp.mode" value="binary" override="true" / -->
+      </phingcall>
+    </target>
+    <!--
+  		Deploy All
+  	-->
+    <target name="deploy-all">
+        <phingcall target="deploy-src" />
+        <phingcall target="deploy-vendor" />
+        <phingcall target="deploy-system-files" />
+    </target>
 	<!--
-		Create API documentation (phpdoc)
 	-->
 	<target name="help">
 		<echo>

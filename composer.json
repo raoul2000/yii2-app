@@ -1,7 +1,7 @@
 {
-    "name": "yiisoft/yii2-app-basic",
-    "description": "Yii 2 Basic Project Template",
-    "keywords": ["yii2", "framework", "basic", "project template"],
+    "name": "raou2000/yii2-app",
+    "description": "Yii 2 App by Raoul2000",
+    "keywords": ["yii2", "framework", "website", "playground"],
     "homepage": "http://www.yiiframework.com/",
     "type": "project",
     "license": "BSD-3-Clause",
@@ -28,7 +28,8 @@
         "codeception/base": "^2.2.3",
         "codeception/verify": "~0.3.1",
         "codeception/specify": "~0.4.3",
-        "phing/phing": "2.*"
+        "phing/phing": "2.*",
+        "pear/net_ftp": "dev-master"
     },
     "config": {
         "process-timeout": 1800
