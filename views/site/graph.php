@@ -12,17 +12,6 @@ $this->registerJsFile(
       app\assets\AppAsset::className()
     ]]
 );
-
-$jsScript =<<<EOS
-loadPackageList();
-showChart('#chart');
-EOS;
-
-$this->registerJs(
-    $jsScript,
-    yii\web\View::POS_READY,
-    'chart-view'
-);
 ?>
 <div class="site-chart">
   <div class="row">

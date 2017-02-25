@@ -1,9 +1,13 @@
 
 var chart = null;
+var loadedSeries = {};
 /**
  * Load the list of available packages into the dropdown select list
  */
 function loadPackageList() {
+
+  var deferred = $.Deferred();
+
   var packageSel = $('#package-selection');
   $.getJSON('index.php?r=packagist/find-all-package-name')
   .done(function(data){
@@ -11,12 +15,31 @@ function loadPackageList() {
       packageSel.append('<option value="'+ item.package_name +'"  >'+item.package_name+'</option>');
     });
     $('#btn-select-package').removeAttr('disabled');
+    deferred.resolve(data);
   })
   .fail(function(error){
-    console.log(error);
+    deferred.reject(error);
   });
+
+  return deferred.promise();
+}
+/**
+ * Unload data series from the chart for a package
+ * @param  {string} package_name package name to unload
+ */
+function unloadPackageData(package_name) {
+  if( loadedSeries.hasOwnProperty(package_name) && loadedSeries[package_name] === true) {
+    chart.unload({
+      ids: [package_name]
+    });
+    loadedSeries[package_name] = false;
+  }
 }
 
+/**
+ * Load data series into the chart, for a package
+ * @param  {string} package_name package name
+ */
 function loadPackageData(package_name) {
   $.getJSON('index.php?r=packagist/search-by-package-name',{
     "name" : package_name
@@ -31,79 +54,54 @@ function loadPackageData(package_name) {
             serie
         ]
     });
+    loadedSeries[package_name] = true;
   })
   .fail(function(error){
     console.log(error);
   });
 }
 
-
-$(function(){
-
-  $('#btn-select-package').on('click',function(ev){
-    var package_name = $('#package-selection option:selected').val();
-    if(package_name.length !== 0) {
-      loadPackageData(package_name);
-    }
-  });
-
-});
-
+/**
+ * Create the chart instance
+ * @param  {string} selector jquery selector for the chart wrapper
+ * @param  {array} columns  data series to load
+ * @return {object}          the chart instance
+ */
 function createChart(selector,columns) {
-  chart = c3.generate({
+  return c3.generate({
     bindto: selector,
     data: {
       columns: columns
     }
   });
-  return chart;
 }
 
-function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+/**
+ * onDocument Ready
+ * @type {[type]}
+ */
+$(function(){
 
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
+  console.log("loading charts data ...");
 
-    return [year, month, day].join('-');
-}
+  $('#btn-select-package').on('click',function(ev){
+    var package_name = $('#package-selection option:selected').val();
+    if(package_name.length !== 0) {
+      if( loadedSeries.hasOwnProperty(package_name) && loadedSeries[package_name] === true) {
+        unloadPackageData(package_name);
+      } else {
+        loadPackageData(package_name);
+      }
+    }
+  });
 
-
-
-function showChart(selector) {
-  $.getJSON('index.php?r=packagist/find-all')
-  .done(function(data){
-    console.log(data);
-
-    var t = data.map(function(row){
-      row.create_time = formatDate(row.create_time * 1000);
-      return row;
-    });
-
-    var dataCol = function(packageName, fieldName) {
-      return data.filter(function(item){
-        return item.package_name === packageName;
-      }).map(function(item){
-        return item[fieldName];
-      });
-    };
-
-    var d1 = dataCol("raoul2000/yii2-jcrop-widget", "download");
-    var d2 = dataCol("raoul2000/yii2-workflow", "download");
-
-    var columns = [
-      ["yii2-jcrop"].concat( d1 ),
-      ["yii2-workflow"].concat( d2 ),
-      ["yii2-bootswatch-asset"].concat( dataCol("raoul2000/yii2-bootswatch-asset", "download"))
-    ];
-
-    return createChart(selector,columns);
+  loadPackageList()
+  .then(function(package_list){
+    console.log(package_list);
+    chart = createChart('#chart',[]);
   })
   .fail(function(error){
     console.error(error);
-    return null;
+    alert("failed to load package list");
   });
-}
+});
