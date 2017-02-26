@@ -121,7 +121,7 @@
       <phingcall target="deploy">
         <property name="deploy.fileset.refid" value="vendorBuild" />
         <!-- override a property -->
-        <!-- <property name="ftp.mode" value="binary" override="true" / -->
+        <!-- property name="ftp.dir" value="20" override="true" / -->
       </phingcall>
     </target>
     <!--

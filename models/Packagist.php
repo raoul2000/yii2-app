@@ -29,6 +29,8 @@ class Packagist extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+          [['package_name', 'download', 'star', 'create_time'], 'required'],
+
             [['download', 'star', 'create_time'], 'integer'],
             [['package_name'], 'string', 'max' => 255],
         ];

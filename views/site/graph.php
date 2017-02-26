@@ -26,7 +26,7 @@ $this->registerJsFile(
           <option value="">Select pagkage ...</option>
         </select>
         <span class="input-group-btn">
-          <button id="btn-select-package" type="button" class="btn btn-default" disabled="disabled">Load data</button>
+          <button id="btn-select-package" type="button" class="btn btn-default" disabled="disabled">Load/Unload data</button>
         </span>
       </div><!-- /input-group -->
       <hr />
