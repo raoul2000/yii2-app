@@ -18,7 +18,8 @@
         "yiisoft/yii2": "~2.0.5",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
-        "bower-asset/c3js-chart": "^0.4.11"
+        "bower-asset/c3js-chart": "^0.4.11",
+        "yiisoft/yii2-httpclient": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
