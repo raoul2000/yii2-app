@@ -17,7 +17,11 @@ class ScraperController extends \yii\web\Controller
     {
         $model = new ScraperForm();
         $responseData = null;
-        $model->scraperServiceUrl = "http://127.0.0.1:5000/scraper";
+        if (YII_ENV_DEV) {
+          $model->scraperServiceUrl = "http://127.0.0.1:5000/scraper";
+        } else {
+          $model->scraperServiceUrl = "https://raoul2000.herokuapp.com/scraper";
+        }
         if($model->load(\Yii::$app->request->post()) && $model->validate()) {
           // scrap
           // return $this->redirect(['view', 'id' => $model->id]);
@@ -26,7 +30,7 @@ class ScraperController extends \yii\web\Controller
             $response = $client->createRequest()
               ->setMethod('post')
               ->setFormat(Client::FORMAT_JSON)
-              ->setUrl('http://localhost:5000/scraper')
+              ->setUrl($model->scraperServiceUrl)
               ->setData(['url' => $model->url, 'selector' => $model->selector])
               ->send();
             if ($response->isOk) {
@@ -46,7 +50,15 @@ class ScraperController extends \yii\web\Controller
     {
         $model = new ScraperForm();
         $responseData = null;
-        $model->scraperServiceUrl = "http://127.0.0.1:5000/scraper/object";
+
+        if (YII_ENV_DEV) {
+          $model->scraperServiceUrl = "http://127.0.0.1:5000/scraper/object";
+        } else {
+          $model->scraperServiceUrl = "https://raoul2000.herokuapp.com/scraper/object";
+        }
+        $model->url = "http://www.lemonde.fr";
+        $model->selector = "article";
+        
         if($model->load(\Yii::$app->request->post()) && $model->validate()) {
           // scrap
           // return $this->redirect(['view', 'id' => $model->id]);
