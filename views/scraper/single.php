@@ -8,10 +8,12 @@ use yii\widgets\ActiveForm;
 /* @var $form ActiveForm */
 ?>
 <div class="scraper-extract">
+    <h1>Web Scraper : Single Value Extaction</h1>
     <h2>Request</h2>
     <hr/>
     <?php $form = ActiveForm::begin(); ?>
-
+    
+        <?= $form->field($model, 'scraperServiceUrl') ?>
         <?= $form->field($model, 'url') ?>
         <?= $form->field($model, 'selector') ?>
 

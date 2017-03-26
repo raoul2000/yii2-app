@@ -13,6 +13,7 @@ use yii\base\Model;
  */
 class ScraperForm extends Model
 {
+    public $scraperServiceUrl;
     public $url;
     public $selector;
 
@@ -22,14 +23,15 @@ class ScraperForm extends Model
     public function rules()
     {
         return [
-            [['url', 'selector'], 'required'],
-            ['url', 'url', 'defaultScheme' => 'http']
+            [['scraperServiceUrl', 'url', 'selector'], 'required'],
+            [['scraperServiceUrl', 'url'], 'url', 'defaultScheme' => 'http']
         ];
     }
 
     public function attributeLabels()
        {
            return [
+              'scraperServiceUrl' => 'Web Scraper Service URL',
                'url' => 'Target Web Page Adress',
                'selector' => 'Content Selector (jquery)'
            ];

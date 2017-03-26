@@ -1,9 +1,25 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>scraper/index</h1>
+<h1>The Web Scraper Project <small>experiment</small></h1>
+<hr />
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<div class="row">
+  <div class="col-xs-6">
+    <h2>Simple Value</h2>
+
+    <p>Extracts a single value from a Web page.</p>
+    <?php
+
+     ?>
+    <p><a class="btn btn-default" href="?r=scraper/single">Try it &raquo;</a></p>
+
+  </div>
+  <div class="col-xs-6">
+    <h2>Object</h2>
+
+    <p>Extract a list of object from a web page. Each object is composed of one or more properties</p>
+
+      <p><a class="btn btn-default" href="?r=scraper/object">Try it &raquo;</a></p>
+  </div>
+</div>
