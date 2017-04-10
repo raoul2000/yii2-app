@@ -14,13 +14,14 @@ function loadPackageList() {
     data.map(function(item){
       packageSel.append('<option value="'+ item.package_name +'"  >'+item.package_name+'</option>');
     });
-    $('#btn-select-package').removeAttr('disabled');
     deferred.resolve(data);
   })
   .fail(function(error){
     deferred.reject(error);
+  })
+  .always(function(){
+    $('#btn-select-package').removeAttr('disabled');
   });
-
   return deferred.promise();
 }
 /**
@@ -41,6 +42,9 @@ function unloadPackageData(package_name) {
  * @param  {string} package_name package name
  */
 function loadPackageData(package_name) {
+  $('#btn-select-package').attr('disabled','disabled');
+  $('#package-selection').attr('disabled','disabled');
+
   $.getJSON('index.php?r=packagist/search-by-package-name',{
     "name" : package_name
   })
@@ -58,6 +62,10 @@ function loadPackageData(package_name) {
   })
   .fail(function(error){
     console.log(error);
+  })
+  .always(function(){
+    $('#btn-select-package').removeAttr('disabled');
+    $('#package-selection').removeAttr('disabled');
   });
 }
 
