@@ -18,7 +18,6 @@ class PostWorkflow implements IWorkflowDefinitionProvider
 					]
 				],
 				'correction' => [
-					'label' => 'in correction',
 					'transition' => ['draft','ready'],
 					'metadata' => [
 						'color' => '#ff9966'

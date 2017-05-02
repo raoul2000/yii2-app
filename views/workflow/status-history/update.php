@@ -45,7 +45,7 @@ use yii\bootstrap\ActiveForm;
 					if(  ! $model->hasWorkflowStatus() ) {
 						echo "status Id : <em>(empty)</em>";
 					} else {
-						echo "status Id : " .  $model->getWorkflowStatus()->getId();
+						echo "status Id : <code> " .  $model->getWorkflowStatus()->getId() . "</code>";
 					}
 				 ?>
 			</div>
@@ -58,9 +58,8 @@ use yii\bootstrap\ActiveForm;
 					The Post Model
 				</h3>
 			</div>
-			<div class="panel-body well">
 
-
+			<div class="panel-body" style="background-color:#f5f5f5">
 		    <?php $form = ActiveForm::begin(); ?>
 				<div class="alertdalert-warning">
 				    <?php
@@ -214,7 +213,7 @@ use yii\bootstrap\ActiveForm;
 					$eventSequenceClassname = get_class(Yii::$app->get($model->eventSequence));
 				}
 			?>
-			<div class="panel-footer">Event Sequence : <?= $eventSequenceClassname ?></div>
+			<div class="panel-footer">Event Sequence : <code><?= $eventSequenceClassname ?></code></div>
 		</div>
 	</div>
 </div>
