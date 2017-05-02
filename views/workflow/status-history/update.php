@@ -20,26 +20,49 @@ use yii\bootstrap\ActiveForm;
 	<div class="col-lg-5">
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<h3 class="panel-title">Current Status</h3>
+				<h3 class="panel-title">
+					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+					Current Status Label
+				</h3>
 			</div>
 			<div class="panel-body">
-            	<?php if( ! $model->hasWorkflowStatus() ) :?>
-                	<h1 class="text-center">
+				<h1 class="text-center">
+      	<?php if( ! $model->hasWorkflowStatus() ) :?>
 					<em>no status</em>
+				<?php else:?>
+					<?php
+						$status = $model->getWorkflowStatus();
+						echo  '<span class="label label-default" style="background-color:'.
+							$status->getMetadata('color').'">'.
+							$status->getLabel()
+						.'</span>'
+					 ?>
+				<?php endif;?>
 				</h1>
 			</div>
-			<div class="panel-footer"></div>                  	
-                <?php else:?>
-               		<h1 class="text-center"><?= Html::encode($model->getWorkflowStatus()->getLabel()) ?></h1>
-		</div>
-		<div class="panel-footer">status Id : <?= $model->getWorkflowStatus()->getId()?></div>                 		
-                <?php endif;?>
-            </div>
+			<div class="panel-footer">
+				<?php
+					if(  ! $model->hasWorkflowStatus() ) {
+						echo "status Id : <em>(empty)</em>";
+					} else {
+						echo "status Id : " .  $model->getWorkflowStatus()->getId();
+					}
+				 ?>
+			</div>
+    </div>
 
-	<div class="post-form well">
-		
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					The Post Model
+				</h3>
+			</div>
+			<div class="panel-body well">
+
+
 		    <?php $form = ActiveForm::begin(); ?>
-				<div class="alertdalert-warning"> 
+				<div class="alertdalert-warning">
 				    <?php
 				    	if( $model->hasWorkflowStatus()) {
 							$radionListData = array_merge(
@@ -49,28 +72,37 @@ use yii\bootstrap\ActiveForm;
 				    	} else {
 				    		$radionListData = \raoul2000\workflow\helpers\WorkflowHelper::getNextStatusListData($model);
 				    	}
-				    	echo $form->field($model, 'status')->radioList($radionListData) 
+				    	echo $form->field($model, 'status')->radioList($radionListData)
 				    ?>
 				</div>
 			    <?= $form->field($model, 'title')->textInput(['maxlength' => 45]) ?>
-			
+
 			    <?= $form->field($model, 'body')->textarea(['rows' => 3]) ?>
-			
+
 			    <?= $form->field($model, 'category')->textInput(['maxlength' => 45]) ?>
-			
+
 			    <?= $form->field($model, 'tags')->textInput(['maxlength' => 255]) ?>
-			
+
 			    <div class="form-group">
 			        <?= Html::submitButton('Update', ['class' => 'btn btn-primary']) ?>
 			    </div>
-		
+
 		    <?php ActiveForm::end(); ?>
-		
-		</div>
+			</div>
+		</div><!-- end of form -->
 	</div>
 
-	
+
 	<div class="col-lg-7">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> The Post Workflow</h3>
+			</div>
+			<div class="panel-body">
+ 				<img src="images/post-workflow.png" alt="post-workflow" class="img-responsive">
+			</div>
+		</div>
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Status History</h3>
@@ -89,29 +121,40 @@ use yii\bootstrap\ActiveForm;
 									<th>Time</th>
 								</tr>
 							</thead>
-							<tbody>	
-								<?php 
-								
+							<tbody>
+								<?php
+
 								$index = count($steps);
-								
+
 								while($index) {
-									$current = $steps[--$index]; 
-									
+									$current = $steps[--$index];
+
 									if( $current->start_status_id == null ) {
 										$startId = '(no status)';
 										$startLabel = '<em>enter into workflow</em>';
 									} else {
 										$startId = $current->start_status_id;
-										$startLabel =  $model->getWorkflowSource()->getStatus( $current->start_status_id)->getLabel();
+
+										$status = $model->getWorkflowSource()->getStatus( $current->start_status_id);
+										$startLabel =  '<span class="label label-default" style="background-color:'.
+											$status->getMetadata('color').'">'.
+											$status->getLabel()
+										.'</span>';
+
 									}
-									
+
 									if( $current->end_status_id == null ) {
 										$endId = '(no status)';
 										$endLabel = '<em>leave workflow</em>';
 									} else {
 										$endId = $current->end_status_id;
-										$endLabel =  $model->getWorkflowSource()->getStatus( $current->end_status_id)->getLabel();
-									}									
+
+										$status = $model->getWorkflowSource()->getStatus( $current->end_status_id);
+										$endLabel =  '<span class="label label-default" style="background-color:'.
+											$status->getMetadata('color').'">'.
+											$status->getLabel()
+										.'</span>';
+									}
 
 									?>
 				               		<tr>
@@ -119,7 +162,7 @@ use yii\bootstrap\ActiveForm;
 										<td><?= $startId ?> to <?= $endId ?></td>
 										<td><?= $startLabel ?> to <?= $endLabel ?></td>
 										<td><?= Yii::$app->formatter->asDate($current->create_time,'HH:mm:ss') ?></td>
-									</tr>				
+									</tr>
 								<?php } ?>
 			 				</tbody>
 						</table>
@@ -143,37 +186,35 @@ use yii\bootstrap\ActiveForm;
 							<th>Origin</th>
 						</tr>
 					</thead>
-					<tbody>	
-							<?php 
+					<tbody>
+							<?php
 								$index=0;
 								foreach($events as $event) {
 									$index++;
-									$eventName = $event->name;	
+									$eventName = $event->name;
 									if( $eventName == 'EVENT_BEFORE_CHANGE_STATUS' || $eventName == 'EVENT_AFTER_CHANGE_STATUS') {
 										$origin = '<em>default</em>';
 									} else {
 										$origin = 'Sequence';
 									}
-						
+
 								?>
 			               		<tr>
 							<td><?= $index?></td>
 							<td><code><?= $eventName ?></code></td>
 							<td><?= $origin ?></td>
-						</tr>				
+						</tr>
 							<?php } ?>
 						 </tbody>
 				</table>
-				<?php endif;?>				
+				<?php endif;?>
 			</div>
 			<?php
 				if( $model->eventSequence) {
 					$eventSequenceClassname = get_class(Yii::$app->get($model->eventSequence));
-				} 
+				}
 			?>
-			<div class="panel-footer">Event Sequence : <?= $eventSequenceClassname ?></div> 
+			<div class="panel-footer">Event Sequence : <?= $eventSequenceClassname ?></div>
 		</div>
 	</div>
 </div>
-
-

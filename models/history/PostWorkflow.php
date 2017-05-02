@@ -4,26 +4,32 @@ namespace app\models\history;
 use Yii;
 use raoul2000\workflow\source\file\IWorkflowDefinitionProvider;
 
-class PostWorkflow implements IWorkflowDefinitionProvider 
+class PostWorkflow implements IWorkflowDefinitionProvider
 {
 	public function getDefinition() {
 		return [
 			'initialStatusId' => 'draft',
 			'status' => [
 				'draft' => [
+					'label' => 'draft',
 					'transition' => ['correction'],
 					'metadata' => [
 						'color' => 'rgb(171, 171, 171)'
 					]
 				],
 				'correction' => [
+					'label' => 'in correction',
 					'transition' => ['draft','ready'],
 					'metadata' => [
-						'color' => 'rgb(226, 144, 27)'
-					]					
+						'color' => '#ff9966'
+					]
 				],
 				'ready' => [
-					'transition' => ['draft', 'correction', 'published']
+					'transition' => ['draft', 'correction', 'published'],
+					'metadata' => [
+						'color' => '#00ccff'
+					]
+
 				],
 				'published' => [
 					'transition' => ['ready', 'archived'],
@@ -32,7 +38,10 @@ class PostWorkflow implements IWorkflowDefinitionProvider
 					]
 				],
 				'archived' => [
-					'transition' => ['ready']
+					'transition' => ['ready'],
+					'metadata' => [
+						'color' => '#cc99ff'
+					]
 				]
 			]
 		];

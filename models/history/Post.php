@@ -53,11 +53,17 @@ class Post extends \yii\db\ActiveRecord
         	// workflow specific validation rules ///////////////////////////////////////////
 
         	['status', \raoul2000\workflow\validation\WorkflowValidator::className()],
+					[['body'], 'required', 'on' => [
+							WorkflowScenario::enterStatus('PostWorkflow/draft')
+						],
+						'message' => "come on !! why create an empty post ? Please write some text ..."
+					],
+
         	[['title','body'], 'required', 'on' => [
 						WorkflowScenario::enterStatus('PostWorkflow/correction'),
 						WorkflowScenario::enterStatus('PostWorkflow/ready'),
 						WorkflowScenario::enterStatus('PostWorkflow/published')
-        	]],
+					]],
 
         	[['tags'], 'required', 'on' => [
 						WorkflowScenario::enterStatus('PostWorkflow/published'),
@@ -80,7 +86,6 @@ class Post extends \yii\db\ActiveRecord
     	} else {
     		$this->addError($attribute,'please enter tags');
     	}
-
     }
 
     /**
