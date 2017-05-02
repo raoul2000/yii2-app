@@ -9,8 +9,8 @@ class m160625_173928_create_post extends Migration
     {
     	$this->createTable('post', [
     		'id' => $this->primaryKey(),
-    		'status' => $this->string(45) . ' NOT NULL',
-    		'title' => $this->string(45) . ' NOT NULL',
+    		'status' => $this->string(45),
+    		'title' => $this->string(45),
     		'body' => $this->string(),
     		'category' => $this->string(45),
     		'tags' => $this->string(255),

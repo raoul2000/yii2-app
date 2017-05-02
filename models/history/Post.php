@@ -26,7 +26,7 @@ use yii\helpers\VarDumper;
 class Post extends \yii\db\ActiveRecord
 {
 	private $workflowEvents = [];
-	
+
 	public function init()
 	{
 
@@ -49,23 +49,27 @@ class Post extends \yii\db\ActiveRecord
             [['created_by', 'created_at', 'updated_by', 'updated_at'], 'integer'],
             [['status', 'title', 'category'], 'string', 'max' => 45],
             [['tags'], 'string', 'max' => 255],
-        	
+
         	// workflow specific validation rules ///////////////////////////////////////////
-        	
+
         	['status', \raoul2000\workflow\validation\WorkflowValidator::className()],
         	[['title','body'], 'required', 'on' => [
-        		WorkflowScenario::enterStatus('PostWorkflow/published')
+						WorkflowScenario::enterStatus('PostWorkflow/correction'),
+						WorkflowScenario::enterStatus('PostWorkflow/ready'),
+						WorkflowScenario::enterStatus('PostWorkflow/published')
         	]],
-        	
+
         	[['tags'], 'required', 'on' => [
+						WorkflowScenario::enterStatus('PostWorkflow/published'),
         		WorkflowScenario::enterStatus('PostWorkflow/archived')
-        	]],        	
+        	]],
         	[['tags'], 'validateTags', 'on' => [
+						WorkflowScenario::enterStatus('PostWorkflow/published'),
         		WorkflowScenario::enterStatus('PostWorkflow/archived')
-        	]]        	
+        	]]
         ];
     }
-    
+
     public function validateTags($attribute, $params)
     {
     	if( !empty($this->tags)) {
@@ -76,9 +80,9 @@ class Post extends \yii\db\ActiveRecord
     	} else {
     		$this->addError($attribute,'please enter tags');
     	}
-    	
+
     }
-    
+
     /**
      * (non-PHPdoc)
      * @see \yii\base\Component::behaviors()
@@ -87,7 +91,7 @@ class Post extends \yii\db\ActiveRecord
     {
     	return [
     		\raoul2000\workflow\base\SimpleWorkflowBehavior::className(),
-    		[    			
+    		[
     			'class' => \app\models\history\StatusHistoryBehavior::className(),
 //     			'saveStatusHistory' => function($status, $model) {
 //     				$history = Yii::createObject('\app\models\history\StatusHistory');
@@ -118,12 +122,12 @@ class Post extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
         ];
     }
-    
-    public function trigger($name, Event $event = null) 
+
+    public function trigger($name, Event $event = null)
     {
     	if( $event instanceof WorkflowEvent ) {
     		$this->workflowEvents[] = $event;
-    	}	
+    	}
     	parent::trigger($name, $event);
     }
     public function getWorkflowEvents()
