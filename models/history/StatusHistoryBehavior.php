@@ -17,22 +17,22 @@ class StatusHistoryBehavior extends Behavior
 	 * @var callback
 	 */
 	public $saveStatusHistory = null;
-	
+
 	public function events()
 	{
 		return [
 			SimpleWorkflowBehavior::EVENT_AFTER_CHANGE_STATUS => 'rememberStatus',
 			ActiveRecord::EVENT_AFTER_INSERT => 'saveHistory',
-			ActiveRecord::EVENT_AFTER_UPDATE => 'saveHistory',
+			ActiveRecord::EVENT_AFTER_UPDATE => 'saveHistory'
 		];
 	}
-	
+
 	public function rememberStatus($event)
 	{
 		$this->transition[] = $event;
-	}	
+	}
 	/**
-	 * 
+	 *
 	 * @param yii\base\Event $event
 	 */
 	public function saveHistory($event)
@@ -48,7 +48,7 @@ class StatusHistoryBehavior extends Behavior
 				$history->assignTransition($event, $this->owner);
 				if( ! $history->save() ) {
 					throw new Exception('failed to save status history : <pre>'.VarDumper::dumpAsString($history->getErrors()).'</pre>');
-				}				
+				}
 			}
 			unset($this->transition[$key]);
 		}
