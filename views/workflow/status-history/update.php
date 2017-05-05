@@ -5,6 +5,12 @@ use raoul2000\workflow\helpers\WorkflowHelper;
 use yii\helpers\ArrayHelper;
 use yii\bootstrap\ActiveForm;
 
+$this->registerJs(
+		'$(".wf-popover").popover({
+			//"placement" : "auto",
+			"html" : true
+		});'
+);
 /* @var $this yii\web\View */
 /* @var $model app\models\StatusHistory */
 /* @var $form ActiveForm */
@@ -20,6 +26,13 @@ use yii\bootstrap\ActiveForm;
 	<div class="col-lg-5">
 		<div class="panel panel-info">
 			<div class="panel-heading">
+				<div class="btn-group pull-right">
+					<a tabindex="0" class="wf-popover btn btn-xs btn-default" role="button"
+					data-toggle="popover" data-trigger="focus"
+					data-placement:"auto"
+					title="help"
+					data-content="And here's some amazing content. It's very engaging. Right?">info</a>
+				</div>
 				<h3 class="panel-title">
 					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 					Current Status Label
