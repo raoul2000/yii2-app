@@ -37,9 +37,9 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Workflow', 'url' => ['/workflow/home']],
             ['label' => 'Graph', 'url' => ['/site/graph']],
             ['label' => 'Scraper', 'url' => ['/scraper']],
-            ['label' => 'Workflow', 'url' => ['/workflow/home']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

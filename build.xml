@@ -130,7 +130,6 @@
     <target name="deploy-all">
         <phingcall target="deploy-src" />
         <phingcall target="deploy-vendor" />
-        <phingcall target="deploy-system-files" />
     </target>
 	<!--
 	-->
