@@ -6,10 +6,10 @@ use yii\helpers\ArrayHelper;
 use yii\bootstrap\ActiveForm;
 
 $this->registerJs(
-		'$(".wf-popover").popover({
-			//"placement" : "auto",
-			"html" : true
-		});'
+	'$("[data-toggle=\"popover\"]").popover({
+    container: "body",
+		html : true
+});'
 );
 /* @var $this yii\web\View */
 /* @var $model app\models\StatusHistory */
@@ -26,13 +26,17 @@ $this->registerJs(
 	<div class="col-lg-5">
 		<div class="panel panel-info">
 			<div class="panel-heading">
+
 				<div class="btn-group pull-right">
-					<a tabindex="0" class="wf-popover btn btn-xs btn-default" role="button"
+					<a tabindex="0" class="btn btn-xs btn-default" role="button"
 					data-toggle="popover" data-trigger="focus"
-					data-placement:"auto"
-					title="help"
-					data-content="And here's some amazing content. It's very engaging. Right?">info</a>
+					data-placement="auto"
+					data-content="This is the current status of the Post model. Below is the
+					status <em>label</em>, and in the footer is the <em>status Id</em>.">
+						<span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="info"></span>
+					</a>
 				</div>
+
 				<h3 class="panel-title">
 					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 					Current Status Label
@@ -64,8 +68,20 @@ $this->registerJs(
 			</div>
     </div>
 
-		<div class="panel panel-info">
+		<div class="panel panel-primary">
 			<div class="panel-heading">
+
+				<div class="btn-group pull-right">
+					<a tabindex="0" class="btn btn-xs btn-default" role="button"
+					data-toggle="popover" data-trigger="focus"
+					data-placement="auto"
+					data-content="Use this form to update the Post model and change its status to make
+					it evolve through the workflow.<br/> Note that some <em>validation rules</em> have been
+					attached to some transitions ...">
+						<span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="info"></span>
+					</a>
+				</div>
+
 				<h3 class="panel-title">
 					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 					The Post Model
@@ -108,6 +124,19 @@ $this->registerJs(
 	<div class="col-lg-7">
 		<div class="panel panel-info">
 			<div class="panel-heading">
+
+				<div class="btn-group pull-right">
+					<a tabindex="0" class="btn btn-xs btn-default" role="button"
+					data-toggle="popover" data-trigger="focus"
+					data-placement="auto"
+					data-content="This is the workflow defined for the Post model. Status colors and labels
+					are also part of the definition, they are defined as <em>status metadata</em> and can be
+					extended to fit your needs.">
+						<span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="info"></span>
+					</a>
+				</div>
+
+
 				<h3 class="panel-title">
 					<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> The Post Workflow</h3>
 			</div>
@@ -117,6 +146,18 @@ $this->registerJs(
 		</div>
 		<div class="panel panel-info">
 			<div class="panel-heading">
+
+				<div class="btn-group pull-right">
+					<a tabindex="0" class="btn btn-xs btn-default" role="button"
+					data-toggle="popover" data-trigger="focus"
+					data-placement="auto"
+					data-content="Follow the workflow path the Post model has been through, from the first
+					status (<em>draft</em>) to the current one.">
+						<span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="info"></span>
+					</a>
+				</div>
+
+
 				<h3 class="panel-title"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Status History</h3>
 			</div>
 			<div class="panel-body">
@@ -184,6 +225,18 @@ $this->registerJs(
 		</div>
 		<div class="panel panel-info">
 			<div class="panel-heading">
+
+				<div class="btn-group pull-right">
+					<a tabindex="0" class="btn btn-xs btn-default" role="button"
+					data-toggle="popover" data-trigger="focus"
+					data-placement="auto"
+					data-content="Events fired by yii2-workflow when the Post model changes status. Attach your own
+					handler to these events to customize model behavior.">
+						<span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="info"></span>
+					</a>
+				</div>
+
+
 				<h3 class="panel-title"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span> Workflow Events</h3>
 			</div>
 			<div class="panel-body">

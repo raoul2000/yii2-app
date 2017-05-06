@@ -20,7 +20,7 @@ class StatusHistoryController extends Controller
 	 */
     public function actionIndex()
     {
-        return $this->render('index');
+				return $this->redirect(['update']);
     }
 
     /**
