@@ -13,7 +13,7 @@ class Step1Form extends Model
 {
     public $favoriteColor;
     public $status;
-    
+
     /**
      * @return array the validation rules.
      */
@@ -22,18 +22,18 @@ class Step1Form extends Model
         return [
             // name, email, subject and body are required
             [['favoriteColor'], 'required'],
-        	[['favoriteColor'], 'compare', 'compareValue' => 'blue', 'operator' => '==', 
+        	[['favoriteColor'], 'compare', 'compareValue' => 'blue', 'operator' => '==',
         		'on' =>  WorkflowScenario::enterStatus('Wizflow/blue')],
-        	
+
         	[['favoriteColor'], 'compare', 'compareValue' => 'green', 'operator' => '==',
-        		'on' =>  WorkflowScenario::enterStatus('Wizflow/green')],        	 
+        		'on' =>  WorkflowScenario::enterStatus('Wizflow/green')],
         ];
-    }   
+    }
     public function summary()
     {
-    	return 'you like '.$this->favoriteColor;
+    	return 'you like the color <b>'.$this->favoriteColor .'</b>';
     }
-    
+
     /**
      * @return array customized attribute labels
      */
@@ -44,5 +44,5 @@ class Step1Form extends Model
         ];
     }
 
-    
+
 }

@@ -10,14 +10,14 @@ use yii\widgets\ActiveForm;
 <div class="wizflow-step-final">
 
 	<div class="row">
-		<div class="col-xs-2">
+		<div class="col-xs-4">
 			<?php
 				foreach($path as $step){
 					echo $step->summary().'<br/>';
 				}
 			?>
 		</div>
-		<div class="col-xs-10">
+		<div class="col-xs-8">
 		    <?php $form = ActiveForm::begin([
 		    	'action' => ['index']
 		    ]); ?>

@@ -54,7 +54,7 @@
         Github Repo &raquo;
       </a>
       <a class="btn btn-primary" href="#" title="Work in progress" disabled>
-        comming soon ...
+        coming soon ...
       </a>
     </p>
   </div>

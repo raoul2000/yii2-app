@@ -5,23 +5,32 @@ use yii\widgets\ActiveForm;
 use yii\helpers\VarDumper;
 use yii\helpers\Url;
 
-$url = Url::to(['index']);
+$url = Url::toRoute(['index','nav'=>'start']);
 
 /* @var $this yii\web\View */
 ?>
 <div class="row">
 	<div class="col-lg-12">
-		<h1>wizflow</h1>
+		<h1>The Wizflow Demo Page <small>experiment</small></h1>
 		<hr/>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-xs-4">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		<p>
+		The <b>Wizflow</b> is an attempt to manage a basic <em>wizard</em> using the <em>yii2-worfklow</em> extension. Basically
+		the wizard UI pattern can be view as a workflow that the user is going to visit while filling-up forms and pushing the "next" button.<br/>
+		Below is the workflow used by the wizard on the right.
+		</p>
+		<img src="images/wizflow-workflow.png" class="img-responsive" style="padding:5px;" alt="wizflow workflow">
+		<p>
+			The use first enters his/her name and email, and then chooses his/her favorite color. Based on this reply,
+			the wizard will drive to a different form (branching). At last, the wizard displays a final form (rate).
+		</p>
 	</div>
 	<div class="col-xs-8">
-		<iframe src="<?php echo $url; ?>" width="100%" height="500px" frameBorder="0"></iframe>
+			<h3>The Great Wizard</h3>
+		<iframe src="<?php echo $url; ?>" width="100%" height="350px" frameBorder="0"></iframe>
 	</div>
 </div>

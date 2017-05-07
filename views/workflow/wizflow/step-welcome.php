@@ -10,9 +10,9 @@ use yii\widgets\ActiveForm;
 <div class="wizflow-step-welcome">
 
 	<div class="row">
-		<div class="col-xs-2">
+		<div class="col-xs-4">
 		</div>
-		<div class="col-xs-10">
+		<div class="col-xs-8">
 		    <?php $form = ActiveForm::begin([
 		    	'action' => ['index','nav'=>'next']
 		    ]); ?>

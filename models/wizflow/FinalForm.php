@@ -20,11 +20,11 @@ class FinalForm extends Model
     public function rules()
     {
         return [
-            [['rate'], 'required'],   	 
+            [['rate'], 'required'],
         ];
-    }   
+    }
     public function summary()
     {
-    	return 'this is : '.$this->rate;
-    }    
+    	return 'you think this was <b>'.$this->rate.'</b>';
+    }
 }

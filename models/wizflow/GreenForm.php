@@ -20,11 +20,20 @@ class GreenForm extends Model
     public function rules()
     {
         return [
-            [['greenStuff'], 'required'],     	 
+            [['greenStuff'], 'required', 'message' => 'don\'t you have an idea ? come on !'],
         ];
-    }   
+    }
+    /**
+     * @return array customized attribute labels
+     */
+    public function attributeLabels()
+    {
+        return [
+            'blueStuff' => 'Name something green',
+        ];
+    }
     public function summary()
     {
-    	return 'green stuff : '.$this->greenStuff;
-    }    
+    	return 'you find <b>'.$this->greenStuff.'</b> to be green.';
+    }
 }

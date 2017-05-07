@@ -20,11 +20,20 @@ class BlueForm extends Model
     public function rules()
     {
         return [
-            [['blueStuff'], 'required'],   	 
+            [['blueStuff'], 'required', 'message' => 'Please make an effort !'],
         ];
-    }   
+    }
+    /**
+     * @return array customized attribute labels
+     */
+    public function attributeLabels()
+    {
+        return [
+            'blueStuff' => 'Name something blue',
+        ];
+    }
     public function summary()
     {
-    	return 'blue stuff : '.$this->blueStuff;
+      return 'you find <b>'.$this->blueStuff.'</b> to be blue.';
     }
 }

@@ -25,9 +25,9 @@ class WelcomeForm extends  Model
             // email has to be a valid email address
             ['email', 'email'],
         ];
-    }  
+    }
     public function summary()
     {
-    	return 'Hi '.$this->name;
-    } 
+    	return 'Hello <b>'.$this->name . '</b>';
+    }
 }

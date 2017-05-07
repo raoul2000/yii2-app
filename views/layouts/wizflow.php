@@ -25,7 +25,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <div class="container">
+    <div class="well">
         <?= $content ?>
     </div>
 </div>
