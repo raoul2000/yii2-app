@@ -37,6 +37,9 @@ class WizflowController extends \yii\web\Controller
 		return true;
 	}
 
+	public function actionInit() {
+		return $this->render('wiz-container');
+	}
 	/**
 	 *
 	 * @param string $nav
@@ -74,10 +77,11 @@ class WizflowController extends \yii\web\Controller
     	}
     	$viewname = $model->getWorkflowStatus()->getMetadata('view');
     	$wizard->save();
-        return $this->render($viewname,[
-        	'model' => $model,
-        	'path'  => $wizard->getPath()
-        ]);
+			$this->layout = "wizflow";
+      return $this->render($viewname,[
+      	'model' => $model,
+      	'path'  => $wizard->getPath()
+      ]);
     }
 
     /**
@@ -89,6 +93,7 @@ class WizflowController extends \yii\web\Controller
     	$wizard = new WizflowManager([
     		'workflowSource' => Yii::$app->get('workflowSource')
     	]);
+			$this->layout = "wizflow";
     	return $this->render('finish',[
     		'path' => $wizard->getPath()
     	]);

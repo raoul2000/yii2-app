@@ -10,22 +10,20 @@ use yii\widgets\ActiveForm;
 <div class="wizflow-step-blue">
 
 	<div class="row">
-		<div class="col-lg-2">
-			<h3>Summary</h3>
-			<hr/>		
+		<div class="col-xs-2">
 			<?php
 				foreach($path as $step){
 					echo $step->summary().'<br/>';
-				} 
-			?>	
+				}
+			?>
 		</div>
-		<div class="col-lg-10">
+		<div class="col-xs-10">
 		    <?php $form = ActiveForm::begin([
 		    	'action' => ['index','nav'=>'next']
 		    ]); ?>
-		
+
 		        <?= $form->field($model, 'blueStuff') ?>
-		    
+
 		        <div class="form-group">
 		        	<hr/>
 		        	<?= Html::a('<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Prev',['index','nav'=> 'prev'],['class'=> 'btn  btn-primary', 'role'=> 'button'])?>&nbsp;

@@ -37,7 +37,7 @@
       <a class="btn btn-default" href="https://github.com/raoul2000/yii2-wizflow" target="yii2-wizflow-repo">
         Github Repo &raquo;
       </a>
-      <a class="btn btn-primary" href="?r=workflow/wizflow&amp;nav=start">
+      <a class="btn btn-primary" href="?r=workflow/wizflow/init">
         Try it &raquo;
       </a>
     </p>
