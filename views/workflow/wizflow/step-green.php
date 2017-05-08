@@ -21,9 +21,9 @@ use yii\widgets\ActiveForm;
 		    <?php $form = ActiveForm::begin([
 		    	'action' => ['index','nav'=>'next']
 		    ]); ?>
+					<p>Green is the color of hope. I hope you can reply to the question below !</p>
 
 		        <?= $form->field($model, 'greenStuff') ?>
-						<p>Green is the color of hope. I hope you can reply to the question below !</p>
 		        <div class="form-group">
 		        	<hr/>
 		        	<?= Html::a('<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Prev',['index','nav'=> 'prev'],['class'=> 'btn  btn-primary', 'role'=> 'button'])?>&nbsp;

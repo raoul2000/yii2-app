@@ -29,7 +29,7 @@ class GreenForm extends Model
     public function attributeLabels()
     {
         return [
-            'blueStuff' => 'Name something green',
+            'greenStuff' => 'Name something green',
         ];
     }
     public function summary()

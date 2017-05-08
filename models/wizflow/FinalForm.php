@@ -20,7 +20,13 @@ class FinalForm extends Model
     public function rules()
     {
         return [
-            [['rate'], 'required'],
+            [['rate'], 'required','message' => "don't be shy !"],
+        ];
+    }
+    public function attributeLabels()
+    {
+        return [
+            'rate' => 'What do you think about this wizflow ?',
         ];
     }
     public function summary()

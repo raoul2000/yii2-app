@@ -23,7 +23,7 @@ use yii\widgets\ActiveForm;
 		    ]); ?>
 
 		         <?= $form->field($model, 'rate')->radioList([
-		         	'cool' => 'Yes that was cool',
+		         	'cool' => 'That was cool',
 		         	'supercool' => 'It was super cool man !',
 		         ]) ?>
 

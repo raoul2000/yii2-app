@@ -28,6 +28,7 @@ $url = Url::toRoute(['index','nav'=>'start']);
 			The use first enters his/her name and email, and then chooses his/her favorite color. Based on this reply,
 			the wizard will drive to a different form (branching). At last, the wizard displays a final form (rate).
 		</p>
+		<p>Read more on the <a href="https://github.com/raoul2000/yii2-wizflow" target="github">Github Repo</a>.</p>
 	</div>
 	<div class="col-xs-8">
 			<h3>The Great Wizard</h3>
