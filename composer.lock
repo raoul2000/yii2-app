@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "329a652781f744178fa71a9bc02ff601",
+    "content-hash": "d017876cb502018f6fedeadfacbe8c84",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -236,6 +236,59 @@
             }
         },
         {
+            "name": "bower-asset/vis",
+            "version": "v4.19.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/almende/vis.git",
+                "reference": "b6258d2688452cd8775e246cc9b0f322902f013b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/almende/vis/zipball/b6258d2688452cd8775e246cc9b0f322902f013b",
+                "reference": "b6258d2688452cd8775e246cc9b0f322902f013b",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/vis.js",
+                    "dist/vis.css"
+                ],
+                "bower-asset-ignore": [
+                    "gulpfile.js",
+                    "index*.js",
+                    "misc",
+                    "node_modules",
+                    "package.json",
+                    "test",
+                    "tools",
+                    "lib",
+                    ".idea",
+                    ".npmignore",
+                    ".gitignore"
+                ]
+            },
+            "license": [
+                "Apache-2.0",
+                "MIT"
+            ],
+            "description": "A dynamic, browser-based visualization library.",
+            "keywords": [
+                "browser",
+                "browser based",
+                "chart",
+                "graph",
+                "javascript",
+                "linechart",
+                "network",
+                "timeline",
+                "vis",
+                "visualization",
+                "web based"
+            ]
+        },
+        {
             "name": "bower-asset/yii2-pjax",
             "version": "v2.0.6",
             "source": {
@@ -422,6 +475,53 @@
                 "yii2"
             ],
             "time": "2017-01-07T16:52:57+00:00"
+        },
+        {
+            "name": "raoul2000/yii2-workflow-view",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/raoul2000/yii2-workflow-view.git",
+                "reference": "0ea0b90a7595ba425baae50405c4e89a1ded1b96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/raoul2000/yii2-workflow-view/zipball/0ea0b90a7595ba425baae50405c4e89a1ded1b96",
+                "reference": "0ea0b90a7595ba425baae50405c4e89a1ded1b96",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/vis": "*",
+                "php": ">=5.4.0",
+                "raoul2000/yii2-workflow": ">=0.0.18",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "raoul2000\\workflow\\view\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Raoul",
+                    "email": "raoul.boulard@gmail.com",
+                    "homepage": "https://github.com/raoul2000/yii2-workflow-view"
+                }
+            ],
+            "description": "A simple widget to display your workflows",
+            "homepage": "http://www.yiiframework.com/",
+            "keywords": [
+                "view",
+                "widget",
+                "workflow",
+                "yii2"
+            ],
+            "time": "2015-08-23T20:00:46+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

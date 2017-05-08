@@ -53,8 +53,8 @@
       <a class="btn btn-default" href="https://github.com/raoul2000/yii2-workflow-view" target="yii2-wizflow-repo">
         Github Repo &raquo;
       </a>
-      <a class="btn btn-primary" href="#" title="Work in progress" disabled>
-        coming soon ...
+      <a class="btn btn-primary" href="?r=workflow/view">
+        Try it &raquo;
       </a>
     </p>
   </div>
