@@ -74,6 +74,7 @@
     <target name="build-vendor" description="vendor dir no-dev">
         <echo>building vendor to ${buildVendor} ...</echo>
         <delete dir="${buildVendor}" />
+        <copy file="${project.basedir}/composer.lock" todir="${buildVendor}" />
         <copy file="${project.basedir}/composer.json" todir="${buildVendor}" />
         <exec command="composer install  --no-dev --prefer-dist" dir="${buildVendor}" passthru="true" />
     </target>
