@@ -11,7 +11,7 @@
 <h2>Demo and Experiments</h2>
 <hr />
 <div class="row">
-  <div class="col-xs-4">
+  <div class="col-xs-4" style="background-color: cornsilk;">
     <h3><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Playground</h3>
     <p>
       See it in action on a sample <em>Post</em> model.
@@ -26,7 +26,7 @@
       </a>
     </p>
   </div>
-  <div class="col-xs-4">
+  <div class="col-xs-4" style="background-color: aliceblue;">
     <h3>WizFlow <small>experiment</small></h3>
     <p>
       The wizard UI pattern can also be considered as a workflow where, based
@@ -42,7 +42,7 @@
       </a>
     </p>
   </div>
-  <div class="col-xs-4">
+  <div class="col-xs-4" style="background-color: lavenderblush;">
     <h3>Workflow View <small>experiment</small></h3>
     <p>
       This is an experiment to create a yii2 widget dedicated to provide a
