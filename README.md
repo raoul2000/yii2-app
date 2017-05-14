@@ -1,3 +1,7 @@
+TODO
+====
+- [ ] evaluate  [pym.js](http://blog.apps.npr.org/pym.js/) to resive the iframe in the **wizflow** demo.
+
 Yii 2 Basic Project Template
 ============================
 
@@ -117,11 +121,11 @@ Tests can be executed by running
 
 ```
 vendor/bin/codecept run
-``` 
+```
 
 The command above will execute unit and functional tests. Unit tests are testing the system components, while functional
 tests are for testing user interaction. Acceptance tests are disabled by default as they require additional setup since
-they perform testing in real browser. 
+they perform testing in real browser.
 
 
 ### Running  acceptance tests
@@ -133,7 +137,7 @@ To execute acceptance tests do the following:
 2. Replace `codeception/base` package in `composer.json` with `codeception/codeception` to install full featured
    version of Codeception
 
-3. Update dependencies with Composer 
+3. Update dependencies with Composer
 
     ```
     composer update  
@@ -143,7 +147,7 @@ To execute acceptance tests do the following:
 
     ```
     java -jar ~/selenium-server-standalone-x.xx.x.jar
-    ``` 
+    ```
 
 5. (Optional) Create `yii2_basic_tests` database and update it by applying migrations if you have them.
 
