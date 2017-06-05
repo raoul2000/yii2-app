@@ -11,52 +11,58 @@
 <h2>Demo and Experiments</h2>
 <hr />
 <div class="row">
-  <div class="col-xs-4" style="background-color: cornsilk;">
-    <h3><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Playground</h3>
-    <p>
-      See it in action on a sample <em>Post</em> model.
-      This Demo includes standard features like
-      <a href="http://raoul2000.github.io/yii2-workflow/overview/#workflow-driven-model-validation" target="doc"><em>Workflow Driven Model Validation</em></a> and
-      <a href="http://raoul2000.github.io/yii2-workflow/concept-events/" target="doc"><em>Events</em></a>, but also an example of
-      <em>Workflow transition history</em> behavior.
-    </p>
-    <p>
-      <a class="btn btn-primary" href="?r=workflow/status-history/update">
-        Try it &raquo;
-      </a>
-    </p>
+  <div class="col-sm-4">
+    <div class="" style="background-color: cornsilk;margin-right:1em;padding:1em;">
+      <h3><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Playground</h3>
+      <p>
+        See it in action on a sample <em>Post</em> model.
+        This Demo includes standard features like
+        <a href="http://raoul2000.github.io/yii2-workflow/overview/#workflow-driven-model-validation" target="doc"><em>Workflow Driven Model Validation</em></a> and
+        <a href="http://raoul2000.github.io/yii2-workflow/concept-events/" target="doc"><em>Events</em></a>, but also an example of
+        <em>Workflow transition history</em> behavior.
+      </p>
+      <p>
+        <a class="btn btn-primary" href="?r=workflow/status-history/update">
+          Try it &raquo;
+        </a>
+      </p>
+    </div>
   </div>
-  <div class="col-xs-4" style="background-color: aliceblue;">
-    <h3>WizFlow <small>experiment</small></h3>
-    <p>
-      The wizard UI pattern can also be considered as a workflow where, based
-      on user choices a <em>path</em> is defined step by steps from the first screen to
-      the last one. Let's try to implement this pattern using yii2-workflow !
-    </p>
-    <p>
-      <a class="btn btn-default" href="https://github.com/raoul2000/yii2-wizflow" target="yii2-wizflow-repo">
-        Github Repo &raquo;
-      </a>
-      <a class="btn btn-primary" href="?r=workflow/wizflow/init">
-        Try it &raquo;
-      </a>
-    </p>
+  <div class="col-sm-4">
+    <div class="" style="background-color: aliceblue;margin-right:1em;padding:1em;">
+      <h3>WizFlow <small>experiment</small></h3>
+      <p>
+        The wizard UI pattern can also be considered as a workflow where, based
+        on user choices a <em>path</em> is defined step by steps from the first screen to
+        the last one. Let's try to implement this pattern using yii2-workflow !
+      </p>
+      <p>
+        <a class="btn btn-default" href="https://github.com/raoul2000/yii2-wizflow" target="yii2-wizflow-repo">
+          Github Repo &raquo;
+        </a>
+        <a class="btn btn-primary" href="?r=workflow/wizflow/init">
+          Try it &raquo;
+        </a>
+      </p>
+    </div>
   </div>
-  <div class="col-xs-4" style="background-color: lavenderblush;">
-    <h3>Workflow View <small>experiment</small></h3>
-    <p>
-      This is an experiment to create a yii2 widget dedicated to provide a
-      graphical representation of a <em>yii2-workflow</em>. It uses the great <a href="http://visjs.org/" target="visjs">vis.js</a>
-      library.<br/>&nbsp;
-    </p>
-    <p>
-      <a class="btn btn-default" href="https://github.com/raoul2000/yii2-workflow-view" target="yii2-wizflow-repo">
-        Github Repo &raquo;
-      </a>
-      <a class="btn btn-primary" href="?r=workflow/view">
-        Try it &raquo;
-      </a>
-    </p>
+  <div class="col-sm-4" >
+    <div class="" style="background-color: lavenderblush;margin-right:1em;padding:1em;">
+      <h3>Workflow View <small>experiment</small></h3>
+      <p>
+        This is an experiment to create a yii2 widget dedicated to provide a
+        graphical representation of a <em>yii2-workflow</em>. It uses the great <a href="http://visjs.org/" target="visjs">vis.js</a>
+        library.<br/>&nbsp;
+      </p>
+      <p>
+        <a class="btn btn-default" href="https://github.com/raoul2000/yii2-workflow-view" target="yii2-wizflow-repo">
+          Github Repo &raquo;
+        </a>
+        <a class="btn btn-primary" href="?r=workflow/view">
+          Try it &raquo;
+        </a>
+      </p>
+    </div>
   </div>
 </div>
 
