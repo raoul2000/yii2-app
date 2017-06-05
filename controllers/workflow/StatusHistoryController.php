@@ -11,6 +11,24 @@ use app\models\history\StatusHistory;
 
 class StatusHistoryController extends Controller
 {
+	public function actions()
+	{
+			return [
+					'change' => [
+						'class' => 'app\actions\workflow\ChangeStatusAction',
+						'findModel' => [$this, 'findModel'],
+						'response'  => [$this, 'response']
+					]
+			];
+	}
+	public function response($changedStatus, $model) {
+		$response = Yii::$app->response;
+		$response->format = \yii\web\Response::FORMAT_JSON;
+		$response->data = ['message' => 'hello world'];
+		return $response;
+		;
+	}
+
 	public function init()
 	{
 		Yii::setAlias('@workflowDefinitionNamespace','app\\models\\history');
@@ -55,7 +73,7 @@ class StatusHistoryController extends Controller
         }
     }
 
-    protected function findModel($id)
+    public function findModel($id)
     {
     	if (($model = Post::findOne($id)) !== null) {
     		return $model;
