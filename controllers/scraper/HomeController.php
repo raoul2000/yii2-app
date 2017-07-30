@@ -1,12 +1,12 @@
 <?php
 
-namespace app\controllers;
+namespace app\controllers\scraper;
 
 use Yii;
 use app\models\ScraperForm;
 use yii\httpclient\Client;
 
-class ScraperController extends \yii\web\Controller
+class HomeController extends \yii\web\Controller
 {
     public function actionIndex()
     {
@@ -58,7 +58,7 @@ class ScraperController extends \yii\web\Controller
         }
         $model->url = "http://www.lemonde.fr";
         $model->selector = "article";
-        
+
         if($model->load(\Yii::$app->request->post()) && $model->validate()) {
           // scrap
           // return $this->redirect(['view', 'id' => $model->id]);
