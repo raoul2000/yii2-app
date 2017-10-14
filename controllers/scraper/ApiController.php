@@ -12,14 +12,23 @@ class ApiController extends \yii\rest\ActiveController
 {
     public $enableCsrfValidation = false;
     public $modelClass = 'app\models\scraper\ScraperModel';
-
+    protected function verbs()
+    {
+        return [
+            'index' => ['OPTIONS', 'GET', 'HEAD'],
+            'view' => ['OPTIONS','GET', 'HEAD'],
+            'create' => ['OPTIONS', 'POST'],
+            'update' => ['OPTIONS', 'PUT', 'PATCH'],
+            'delete' => ['OPTIONS', 'DELETE'],
+        ];
+    }
     public function behaviors()
     {
       $behaviors = parent::behaviors();
 
       if (YII_ENV_DEV) {
         // Enable CORS in DEV only
-
+        //throw new yii\web\HttpException('error');
         // remove authentication filter
         $auth = $behaviors['authenticator'];
         unset($behaviors['authenticator']);
@@ -27,10 +36,12 @@ class ApiController extends \yii\rest\ActiveController
         // add CORS filter in first position of the filter array
         $behaviors = [
           'corsFilter' => [
-            'class' => \app\components\Cors::className(),
+            'class' => \yii\filters\Cors::className(),
+            //'class' => \app\components\Cors::className(),
             'cors' => [
                 'Origin' => ['*'],
-                'Access-Control-Request-Headers' => ['*']
+                'Access-Control-Request-Headers' => ['*'],
+                'Access-Control-Request-Method' => ['POST' , 'GET', 'OPTIONS', 'PUT','DELETE']
             ]
           ]
         ] + $behaviors;
@@ -38,7 +49,7 @@ class ApiController extends \yii\rest\ActiveController
         // re-add authentication filter
         $behaviors['authenticator'] = $auth;
         // avoid authentication on CORS-pre-flight requests (HTTP OPTIONS method)
-        $behaviors['authenticator']['except'] = ['options'];
+        $behaviors['authenticator']['except'] = ['OPTIONS'];
       }
 
       return $behaviors;
