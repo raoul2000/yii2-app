@@ -19,5 +19,14 @@ ftp.mode=binary
 ```
 > ./vendor/bin/phing build-src
 > ./vendor/bin/phing build-vendor
-> ./vendor/bin/phing deploy
+> ./vendor/bin/phing deploy-all
 ```
+
+## Build Partial
+
+All build are copied to the folder `./build`.
+
+- `build-src` : build source files
+- `build-vendor` : build Composer dependencies for production (**no-dev**)
+- `deploy-src` : deploy source files to server
+- `deploy-vendor` : deploy Composer dependencies previoulsy build
