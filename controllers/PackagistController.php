@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Purge packagist_stat table : delete ever other row
+ * DELETE FROM `packagist_stat` WHERE from_unixtime(create_time, '%d')%2 = 0
+ */
+
 namespace app\controllers;
 
 use Yii;
