@@ -10,16 +10,14 @@ ftp.host=ftp.example.com
 ftp.port=21
 ftp.username=your-user-name
 ftp.password=your-password
-ftp.dir=public_html
+ftp.dir=deploy_foldername
 ftp.mode=binary
 ```
 
-## Source
+## Build Deploy All
 
 ```
 > ./vendor/bin/phing build-src
-> ./vendor/bin/phing deploy-src
+> ./vendor/bin/phing build-vendor
+> ./vendor/bin/phing deploy
 ```
-
-
-Deploy using a **phing** target.
