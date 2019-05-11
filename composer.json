@@ -15,7 +15,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": "~2.0.5",
+        "yiisoft/yii2": "~2.0.18",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "bower-asset/c3js-chart": "^0.4.11",
@@ -31,7 +31,7 @@
         "codeception/base": "^2.2.3",
         "codeception/verify": "~0.3.1",
         "codeception/specify": "~0.4.3",
-        "phing/phing": "2.*",
+        "phing/phing": "3.0.0-alpha2",
         "pear/net_ftp": "dev-master"
     },
     "config": {
